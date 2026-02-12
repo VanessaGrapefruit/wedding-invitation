@@ -1,0 +1,19 @@
+Design Reference for Wedding Invitation Site
+==============================================
+
+The visual reference mockup for `geminy.html` and related pages is documented below.
+Refer to the attached image mockup when making any layout, color, or design changes.
+
+Key visual elements from the reference:
+- Single-column mobile-first card layout
+- Green background (#6B705C) with white card
+- Playfair Display font for headings and large text
+- Montserrat for body text
+- Program section with date, title, horizontal dashed timeline with times above and events below
+- Timer section with circular progress rings (days/hours/minutes/seconds)
+- Color palette: sage green (#A5A58D), light beige, neutral grays
+- Decorative botanical SVG elements (eucalyptus branches)
+- Dress code color palette shown as dots
+- Location section with photo placeholders
+
+All new design changes should align with this reference mockup.

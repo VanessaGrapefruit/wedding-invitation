@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Свадебное приглашение | Алексей & Диана</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Cormorant+Garamond:wght@300;400&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+        <style>
+            /* Общие стили */
+            :root {
+                --sage-green: #6B705C; /* Темный шалфей */
+                --light-sage: #A5A58D; /* Светлый шалфей */
+                --bg-color: #6B705C;   /* фон страницы (зеленая рамка) */
+                --card-bg: #FFFFFF;    /* карточка (белая) */
+                --heading-color: #6B705C;
+                --text-body: #333333;
+                --body-font-size: 0.9rem;
+                --text-light: #FFFFFF;
+            }
+
+            html, body {
+                height: 100%;
+                margin: 0;
+            }
+
+            body {
+                font-family: 'Montserrat', sans-serif;
+                background-color: var(--bg-color);
+                color: var(--text-body);
+                line-height: 1.6;
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+                display: flex;
+                justify-content: center;
+                align-items: flex-start;
+                padding: 40px 20px;
+            }
+
+            /* Single mobile-first card */
+            .wrapper {
+                width: 100%;
+                display: flex;
+                justify-content: center;
+            }
+
+            .card {
+                background: var(--card-bg);
+                background-image: url('assets/img/background.png'), url('assets/img/background2.png');
+                background-size: contain, contain;
+                background-repeat: no-repeat, repeat;
+                width: 100%;
+                max-width: 420px;
+                padding: 28px 20px;
+                box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+                border-radius: 4px;
+                box-sizing: border-box;
+                position: relative;
+                font-size: var(--body-font-size);
+            }
+
+            h1, h2, h3 {
+                font-family: 'Cormorant Garamond', serif;
+                font-weight: 300;
+                text-transform: uppercase;
+                letter-spacing: 2px;
+                margin: 0;
+                color: var(--heading-color);
+            }
+
+            h2, h3 { font-size: 1.5rem; }
+
+            h3 { text-align: center; }
+
+            /* Card content sits above decor SVG */
+            .card > * { position: relative; z-index: 1; }
+            .card > section,
+            .card > .program-card-container { margin-top: 50px; }
+            .card > section:first-of-type { margin-top: 0; }
+
+            .hero { text-align: center; padding-top: 12px; margin-top: 170px; }
+            .hero-names { position: relative; display: inline-block; padding: 6px 0 2px; }
+            .hero h1 { font-size: 2.4rem; line-height: 1.05; font-weight: 400; position: relative; z-index: 2; }
+            .hero .ampersand-svg {
+                position: absolute;
+                left: 10%;
+                bottom: 0;
+                transform: translate(-50%, 0) scale(0.82);
+                width: 104px;
+                height: auto;
+                opacity: 0.08;
+                z-index: 1;
+                pointer-events: none;
+            }
+            .date-divider { font-size: inherit; letter-spacing: 3px; margin-top: 12px; color: #777; }
+
+            .intro-text { text-align: center; font-size: inherit; margin: 0 0 210px; color: #444; }
+
+            .program-card { background-color: var(--sage-green); color: var(--text-light); padding: 22px 0; margin-bottom: 0; border-radius: 1px; position:relative; overflow:visible; z-index:2; box-shadow: 0 8px 24px 4px #e0e0e0; }
+            .program-card-container { position:relative; }
+            .program-card-shadow-bg { position:absolute; width:100%; height:100%; background-color:#e0e0e0; border-radius:1px; transform:rotate(-4deg); z-index:1; }
+            .program-date { font-size:0.72rem; color: rgba(255,255,255,0.85); text-align:center; margin-bottom:6px; padding: 0 22px; }
+            .program-card h2 { text-align: center; margin: 4px 0 14px; font-size: 1.5rem; font-family: 'Cormorant Garamond', serif; font-weight:400; color: #FFFFFF; padding: 0 22px; max-width:150px; margin-left:auto; margin-right:auto; }
+            .timeline { position:relative; display:flex; justify-content:space-between; align-items:center; padding: 40px 22px; gap:8px; flex-wrap: wrap; }
+            .timeline svg.timeline-wave { position:absolute; left:0; right:0; top:50%; width:100%; height:160px; transform: translateY(-50%); overflow:visible; z-index:1; }
+            .timeline svg.timeline-wave path { fill:none; stroke: rgba(255,255,255,0.22); stroke-width:1.5; stroke-dasharray:3 3; stroke-linecap:butt; stroke-linejoin:round; vector-effect:non-scaling-stroke; }
+            .timeline-item {
+                display:flex; flex-direction:column; position:relative; z-index:2;
+                max-width: 40%;
+            }
+            .timeline-item .time { font-family:'Playfair Display', serif; font-size:1.25rem; color: #fff; margin-bottom:4px; order:1; }
+            .timeline-item .event { font-size:0.78rem; color: rgba(255,255,255,0.95); margin-top:8px; line-height:1.15; order:3; font-weight:100; letter-spacing:0.5px; }
+
+            .timer-section { text-align:center; margin: 0; }
+            /* Timer card (background + border) */
+            .timer-card {
+                background: #f1efe9;
+                border: 1px solid rgba(0,0,0,0.06);
+                padding: 14px;
+                border-radius: 10px;
+                display: block;
+                margin: 10px 0 20px;
+            }
+            .timer-title { margin: 0 0 10px; font-size: 1.5rem; color: var(--heading-color); }
+            .timer-grid { display:flex; justify-content:center; gap:12px; margin-top:12px; }
+            .timer-item { display:flex; flex-direction:column; align-items:center; gap:6px; }
+            .timer-circle {
+                width:70px; height:70px; position:relative;
+                display:flex; align-items:center; justify-content:center;
+                background: transparent;
+            }
+            .timer-circle svg { width:100%; height:100%; transform: rotate(-90deg); }
+            .timer-circle .track { fill: none; stroke-width: 6; }
+            .timer-circle .progress { fill: none; stroke: var(--light-sage); stroke-width: 6; stroke-linecap: round; transition: stroke-dashoffset 700ms cubic-bezier(.2,.9,.2,1); }
+            .timer-circle b { position:absolute; font-size: inherit; line-height:1; display:block; z-index:2; color:var(--text-dark); }
+            .timer-label { font-size: inherit; text-transform:uppercase; color:#666; letter-spacing:0.6px; }
+            .timer-circle.tick { transform: scale(1.06); transition: transform 220ms ease; }
+
+            .location-section { text-align:left; margin-top:0; }
+            .photo-grid { display:flex; gap:8px; margin: 10px 0 12px; width:100%; }
+            .photo-img { flex:1 1 0; min-width:0; width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:4px; display:block; }
+            .location-section p { font-size: inherit; }
+
+            .dress-code { text-align:center; margin-top:0; }
+            .palette { display:flex; gap:10px; margin-top:12px; justify-content:center; }
+            .color-dot { width:38px; height:38px; border-radius:50%; border:1px solid #eee; }
+            .dress-code p { font-size: inherit; }
+
+            .rsvp-section { text-align: center; margin: 0; padding: 6px 0; }
+            .rsvp-button {
+                background: var(--sage-green);
+                color: #fff;
+                border: none;
+                border-radius: 999px;
+                padding: 14px 26px;
+                font-size: inherit;
+                letter-spacing: 0.6px;
+                text-transform: uppercase;
+                cursor: pointer;
+            }
+
+            @media (max-width: 480px) {
+                body { padding: 18px; }
+                .card { padding: 22px 16px; }
+                h1 { font-size: 2rem; }
+                .hero .ampersand-svg { width: 84px; }
+            }
+        </style>
+</head>
+<body>
+
+<div class="wrapper">
+  <div class="card">
+    <header class="hero">
+        <div class="hero-names">
+            <img class="ampersand-svg" src="assets/img/ampersand.svg" alt="">
+            <h1>Алексей</h1>
+            <h1>Диана</h1>
+        </div>
+        <div class="date-divider">10.05.2026</div>
+    </header>
+
+    <section class="intro-text">
+        <p>Дорогие друзья и родные, мы приглашаем вас на нашу свадьбу! Мы будем рады разделить с Вами радость неповторимого для нас дня.</p>
+    </section>
+
+    <section class="location-section">
+        <h3>Место торжества</h3>
+        <div class="photo-grid">
+            <img class="photo-img" src="assets/img/eden1.jpg" alt="Усадьба Eden, вид 1">
+            <img class="photo-img" src="assets/img/eden2.jpg" alt="Усадьба Eden, вид 2">
+        </div>
+        <p>Усадьба «Eden», Минск, д. Сеница, Набережная, 1</p>
+    </section>
+
+    <div class="program-card-container">
+        <div class="program-card-shadow-bg"></div>
+        <section class="program-card">
+        <div class="program-date">10.05.2026</div>
+        <h2>Программа торжества</h2>
+        <div class="timeline">
+            <svg class="timeline-wave" viewBox="0 0 200 240" preserveAspectRatio="none" aria-hidden="true">
+                <!-- S-curve with quadratic arcs, doubled radius -->
+                <path d="M 0 30 L 170 30 Q 190 30 190 80 Q 190 130 170 130 L 30 130 Q 10 130 10 180 Q 10 230 30 230 L 200 230" />
+            </svg>
+            <div class="timeline-item" style="top: -20px;">
+                <div class="time">14:00</div>
+                <div class="event">Сбор гостей, фуршет</div>
+            </div>
+            <div class="timeline-item" style="top: -20px; left: -40px;">
+                <div class="time">15:00</div>
+                <div class="event">Выездная регистрация</div>
+            </div>
+            <div class="timeline-item" style="top: 34px; left: 40px;">
+                <div class="time">17:00</div>
+                <div class="event">Праздничный банкет</div>
+            </div>
+            <div class="timeline-item" style="top: 27px;">
+                <div class="time">22:00</div>
+                <div class="event">After party</div>
+            </div>
+        </div>
+    </section>
+        </div>
+
+    <section class="timer-section">
+        <div class="timer-card" aria-hidden="false">
+            <h3 class="timer-title">До торжества осталось</h3>
+            <div class="timer-grid" role="list">
+                <div class="timer-item" role="listitem">
+                    <div class="timer-circle" data-unit="days">
+                        <svg viewBox="0 0 100 100" aria-hidden="true">
+                            <defs>
+                                <linearGradient id="g-days" gradientUnits="objectBoundingBox" x1="0" y1="0" x2="1" y2="0">
+                                    <stop offset="0%" stop-color="#A5A58D" stop-opacity="0.96"/>
+                                    <stop offset="30%" stop-color="#cfd3c0" stop-opacity="0.9"/>
+                                    <stop offset="70%" stop-color="#f7f6f2" stop-opacity="0.6" />
+                                    <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+                                </linearGradient>
+                            </defs>
+                            <circle class="track" cx="50" cy="50" r="30" stroke="url(#g-days)"></circle>
+                            <circle class="progress" cx="50" cy="50" r="30" stroke-dasharray="188.5" stroke-dashoffset="0"></circle>
+                        </svg>
+                        <b>35</b>
+                    </div>
+                    <div class="timer-label">дней</div>
+                </div>
+                <div class="timer-item" role="listitem">
+                    <div class="timer-circle" data-unit="hours">
+                        <svg viewBox="0 0 100 100" aria-hidden="true">
+                            <defs>
+                                <linearGradient id="g-hours" gradientUnits="objectBoundingBox" x1="0" y1="0" x2="1" y2="0">
+                                    <stop offset="0%" stop-color="#A5A58D" stop-opacity="0.96"/>
+                                    <stop offset="30%" stop-color="#cfd3c0" stop-opacity="0.9"/>
+                                    <stop offset="70%" stop-color="#f7f6f2" stop-opacity="0.6" />
+                                    <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+                                </linearGradient>
+                            </defs>
+                            <circle class="track" cx="50" cy="50" r="30" stroke="url(#g-hours)"></circle>
+                            <circle class="progress" cx="50" cy="50" r="30" stroke-dasharray="188.5" stroke-dashoffset="0"></circle>
+                        </svg>
+                        <b>04</b>
+                    </div>
+                    <div class="timer-label">часа</div>
+                </div>
+                <div class="timer-item" role="listitem">
+                    <div class="timer-circle" data-unit="minutes">
+                        <svg viewBox="0 0 100 100" aria-hidden="true">
+                            <defs>
+                                <linearGradient id="g-minutes" gradientUnits="objectBoundingBox" x1="0" y1="0" x2="1" y2="0">
+                                    <stop offset="0%" stop-color="#A5A58D" stop-opacity="0.96"/>
+                                    <stop offset="30%" stop-color="#cfd3c0" stop-opacity="0.9"/>
+                                    <stop offset="70%" stop-color="#f7f6f2" stop-opacity="0.6" />
+                                    <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+                                </linearGradient>
+                            </defs>
+                            <circle class="track" cx="50" cy="50" r="30" stroke="url(#g-minutes)"></circle>
+                            <circle class="progress" cx="50" cy="50" r="30" stroke-dasharray="188.5" stroke-dashoffset="0"></circle>
+                        </svg>
+                        <b>57</b>
+                    </div>
+                    <div class="timer-label">минут</div>
+                </div>
+                <div class="timer-item" role="listitem">
+                    <div class="timer-circle" data-unit="seconds">
+                        <svg viewBox="0 0 100 100" aria-hidden="true">
+                            <defs>
+                                <linearGradient id="g-seconds" gradientUnits="objectBoundingBox" x1="0" y1="0" x2="1" y2="0">
+                                    <stop offset="0%" stop-color="#A5A58D" stop-opacity="0.96"/>
+                                    <stop offset="30%" stop-color="#cfd3c0" stop-opacity="0.9"/>
+                                    <stop offset="70%" stop-color="#f7f6f2" stop-opacity="0.6" />
+                                    <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+                                </linearGradient>
+                            </defs>
+                            <circle class="track" cx="50" cy="50" r="30" stroke="url(#g-seconds)"></circle>
+                            <circle class="progress" cx="50" cy="50" r="30" stroke-dasharray="188.5" stroke-dashoffset="0"></circle>
+                        </svg>
+                        <b>55</b>
+                    </div>
+                    <div class="timer-label">секунд</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="dress-code">
+        <h3>Дресс-код</h3>
+        <p>Мы очень ждем и с удовольствием готовимся к нашему незабываему дню! Поддержите нас вашими улыбками и объятиями, а также красивыми нарядами</p>
+        <p>Для дам просим выбрать вечерние платья в палитре торжества и избегать белого цвета.</p>
+        <div class="palette">
+            <div class="color-dot" style="background-color: #F4F1DE;"></div>
+            <div class="color-dot" style="background-color: #E0E5D5;"></div>
+            <div class="color-dot" style="background-color: #A5A58D;"></div>
+            <div class="color-dot" style="background-color: #6B705C;"></div>
+            <div class="color-dot" style="background-color: #3F4238;"></div>
+        </div>
+    </section>
+
+    <section class="rsvp-section">
+        <h3>Подтвердить присутствие</h3>
+        <button class="rsvp-button" type="button">Заполнить анкету</button>
+    </section>
+
+  </div>
+</div>
+
+<script>
+// Timer script: parse date from `.date-divider` (format DD.MM.YYYY) if present,
+// otherwise fallback to offset from initial numbers. Updates every second and
+// animates changed circles with a short scale 'tick'.
+(function(){
+    // Fixed wedding date: 10 May 2026 (local time)
+    const target = new Date(2026, 4, 10, 0, 0, 0);
+
+    const items = Array.from(document.querySelectorAll('.timer-grid .timer-item'));
+
+    // initialize SVG stroke dash properties
+    items.forEach(item => {
+        const prog = item.querySelector('.progress');
+        if(!prog) return;
+        const r = Number(prog.getAttribute('r') || 30);
+        const c = 2 * Math.PI * r;
+        prog.style.strokeDasharray = String(c);
+        // start with full offset (empty ring)
+        prog.style.strokeDashoffset = String(c * 1);
+    });
+
+    function setProgress(prog, fraction){
+        fraction = Math.max(0, Math.min(1, fraction));
+        const r = Number(prog.getAttribute('r') || 30);
+        const c = 2 * Math.PI * r;
+        const offset = c * (1 - fraction);
+        prog.style.strokeDashoffset = String(offset);
+    }
+
+    function update(){
+        const t = Math.max(0, target - Date.now());
+        const secsTotal = Math.floor(t/1000);
+        const days = Math.floor(secsTotal / 86400);
+        const hours = Math.floor((secsTotal % 86400) / 3600);
+        const mins = Math.floor((secsTotal % 3600) / 60);
+        const secs = secsTotal % 60;
+
+        const values = [days, hours, mins, secs];
+
+        items.forEach(item => {
+            const unit = item.querySelector('.timer-circle')?.dataset.unit || '';
+            const b = item.querySelector('b');
+            const prog = item.querySelector('.progress');
+            let idx = 0;
+            if(unit === 'days') idx = 0;
+            else if(unit === 'hours') idx = 1;
+            else if(unit === 'minutes') idx = 2;
+            else if(unit === 'seconds') idx = 3;
+
+            const newVal = String(values[idx]).padStart(2, '0');
+            if(b.textContent !== newVal){
+                b.textContent = newVal;
+                const circleWrap = item.querySelector('.timer-circle');
+                circleWrap.classList.add('tick');
+                setTimeout(() => circleWrap.classList.remove('tick'), 220);
+            }
+
+            if(prog){
+                let fraction = 0;
+                if(unit === 'days') fraction = Math.min(values[0] / 365, 1);
+                if(unit === 'hours') fraction = values[1] / 24;
+                if(unit === 'minutes') fraction = values[2] / 60;
+                if(unit === 'seconds') fraction = values[3] / 60;
+                setProgress(prog, fraction);
+            }
+        });
+    }
+
+    update();
+    setInterval(update, 1000);
+})();
+</script>
+
+</body>
+</html>
