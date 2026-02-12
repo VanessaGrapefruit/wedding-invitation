@@ -33,7 +33,7 @@
                 display: flex;
                 justify-content: center;
                 align-items: flex-start;
-                padding: 40px 20px;
+                padding: 20px;
             }
 
             /* Single mobile-first card */
@@ -93,11 +93,11 @@
             }
             .date-divider { font-size: inherit; letter-spacing: 3px; margin-top: 12px; color: #777; }
 
-            .intro-text { text-align: center; font-size: inherit; margin: 0 0 210px; color: #444; }
+            .intro-text { text-align: center; font-size: inherit; margin: 0 0 280px; color: #444; }
 
             .program-card { background-color: var(--sage-green); color: var(--text-light); padding: 22px 0; margin-bottom: 0; border-radius: 1px; position:relative; overflow:visible; z-index:2; box-shadow: 0 8px 24px 4px #e0e0e0; }
             .program-card-container { position:relative; }
-            .program-card-shadow-bg { position:absolute; width:100%; height:100%; background-color:#e0e0e0; border-radius:1px; transform:rotate(-4deg); z-index:1; }
+            .program-card-shadow-bg { position:absolute; width:100%; height:100%; background-color:#e0e0e0; border-radius:1px; transform:rotate(-2deg); z-index:1; }
             .program-date { font-size:0.72rem; color: rgba(255,255,255,0.85); text-align:center; margin-bottom:6px; padding: 0 22px; }
             .program-card h2 { text-align: center; margin: 4px 0 14px; font-size: 1.5rem; font-family: 'Cormorant Garamond', serif; font-weight:400; color: #FFFFFF; padding: 0 22px; max-width:150px; margin-left:auto; margin-right:auto; }
             .timeline { position:relative; display:flex; justify-content:space-between; align-items:center; padding: 40px 22px; gap:8px; flex-wrap: wrap; }
@@ -167,7 +167,91 @@
 
             @media (max-width: 400px) {
                 body { padding: 0 }
+                .timer-circle { width: 60px; height: 60px; }
             }
+
+
+.timeline-2 {
+    position: relative;
+}
+
+.line {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    border-left: 1px solid rgba(255,255,255,0.22);
+    transform: translateX(-50%);
+}
+
+/* Элементы */
+.timeline-item {
+    position: relative;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.timeline-item img {
+    width: 40px;
+    margin-bottom: 10px;
+}
+
+.timeline-item .content {
+    font-size: var(--body-font-size);
+}
+
+/* Позиционирование лево/право */
+.left {
+    right: -10%;
+    padding-right: 30px;
+    box-sizing: border-box;
+    align-items: flex-end;
+    text-align: right;
+}
+
+.right {
+    left: 50%;
+    padding-left: 30px;
+    box-sizing: border-box;
+    align-items: flex-start;
+    text-align: left;
+}
+
+/* Черточки (отростки от центральной линии) */
+.timeline-item::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.22);
+}
+
+.left::after {
+    right: 0;
+}
+
+.right::after {
+    left: 0;
+}
+
+/* Иконки и контент */
+.icon {
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+.content time {
+    display: block;
+    font-weight: 300;
+    margin-bottom: 5px;
+}
+
+.content p {
+    letter-spacing: 0.75px;
+    margin: 0;
+}
         </style>
 </head>
 <body>
@@ -193,38 +277,81 @@
             <img class="photo-img" src="assets/img/eden1.jpg" alt="Усадьба Eden, вид 1">
             <img class="photo-img" src="assets/img/eden2.jpg" alt="Усадьба Eden, вид 2">
         </div>
-        <p>Усадьба «Eden», Минск, д. Сеница, Набережная, 1</p>
+        <p>Усадьба «Eden», Минск, д. Сеница, Набережная 1</p>
     </section>
 
     <div class="program-card-container">
         <div class="program-card-shadow-bg"></div>
         <section class="program-card">
-        <div class="program-date">10.05.2026</div>
-        <h2>Программа торжества</h2>
-        <div class="timeline">
-            <svg class="timeline-wave" viewBox="0 0 200 240" preserveAspectRatio="none" aria-hidden="true">
-                <!-- S-curve with quadratic arcs, doubled radius -->
-                <path d="M 0 30 L 170 30 Q 190 30 190 80 Q 190 130 170 130 L 30 130 Q 10 130 10 180 Q 10 230 30 230 L 200 230" />
-            </svg>
-            <div class="timeline-item" style="top: -20px;">
-                <div class="time">14:00</div>
-                <div class="event">Сбор гостей, фуршет</div>
-            </div>
-            <div class="timeline-item" style="top: -20px; left: -40px;">
-                <div class="time">15:00</div>
-                <div class="event">Выездная регистрация</div>
-            </div>
-            <div class="timeline-item" style="top: 34px; left: 40px;">
-                <div class="time">17:00</div>
-                <div class="event">Праздничный банкет</div>
-            </div>
-            <div class="timeline-item" style="top: 27px;">
-                <div class="time">22:00</div>
-                <div class="event">After party</div>
+            <div class="program-date">10.05.2026</div>
+            <h2>Программа торжества</h2>
+
+            <div class="timeline-2">
+        <div class="line"></div>
+
+        <div class="timeline-item right">
+            <img src="./assets/img/wedding-car.png">
+            <div class="content">
+                <time>15:00</time>
+                <p>Сбор гостей</p>
             </div>
         </div>
-    </section>
+
+        <div class="timeline-item left">
+             <img src="./assets/img/wedding-arch.png">
+            <div class="content">
+                <time>16:00</time>
+                <p>Выездная церемония</p>
+            </div>
         </div>
+
+        <div class="timeline-item right">
+            <img src="./assets/img/wedding-card.png">
+            <div class="content">
+                <time>17:00</time>
+                <p>Банкет</p>
+            </div>
+        </div>
+
+        <div class="timeline-item left">
+            <img src="./assets/img/wedding-cake.png">
+            <div class="content">
+                <time>21:00</time>
+                <p>Свадебный торт</p>
+            </div>
+        </div>
+    </div>
+        </section>
+    </div>
+
+    <!-- <div class="program-card-container">
+        <div class="program-card-shadow-bg"></div>
+        <section class="program-card">
+            <div class="program-date">10.05.2026</div>
+            <h2>Программа торжества</h2>
+            <div class="timeline">
+                <svg class="timeline-wave" viewBox="0 0 200 240" preserveAspectRatio="none" aria-hidden="true">
+                    <path d="M 0 30 L 170 30 Q 190 30 190 80 Q 190 130 170 130 L 30 130 Q 10 130 10 180 Q 10 230 30 230 L 200 230" />
+                </svg>
+                <div class="timeline-item" style="top: -20px;">
+                    <div class="time">15:00</div>
+                    <div class="event">Сбор гостей, фуршет</div>
+                </div>
+                <div class="timeline-item" style="top: -20px; left: -40px;">
+                    <div class="time">16:00</div>
+                    <div class="event">Выездная регистрация</div>
+                </div>
+                <div class="timeline-item" style="top: 33px; left: 50px;">
+                    <div class="time">17:00</div>
+                    <div class="event">Праздничный банкет</div>
+                </div>
+                <div class="timeline-item" style="top: 25px; right: 23px">
+                    <div class="time">21:00</div>
+                    <div class="event">Праздничный торт</div>
+                </div>
+            </div>
+        </section>
+    </div> -->
 
     <section class="timer-section">
         <div class="timer-card" aria-hidden="false">
